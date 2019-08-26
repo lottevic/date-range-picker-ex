@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-TW">
+<head>
+  <title>Date Range Picker 範例</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- jquery  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- bootstrap 4 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- date picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <!-- Font Awesome v4.7.0 -->
+  <link rel="stylesheet"  href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+  <!-- lotte style -->
+  <link rel="stylesheet" href="main.css" />
+
+</head>
+<body>
+
+  <div class="jumbotron lotte-jumbotron text-center">
+    <h1>Date Range Picker 範例</h1>
+    <ul class="nav nav-lotte justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">選取單一日期</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="index2.html">選取起迄日期</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="index3.html">手機原生</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="http://www.daterangepicker.com/" target="_blank" style="border: none;" title="原站連結"><i class="fa fa-link"></i></a>
+      </li>      
+    </ul>  
+  </div>
+  
+<div class="container lotte-container" >
+    <div class="row lotte-mobile-only">
+        <div class="col-md-12 lotte-col">
+          <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input ID_HIDE_MOBILE_KEYBOARD" id="hahaha">
+              <label class="custom-control-label ID_HIDE_MOBILE_KEYBOARD" for="hahaha">強制關閉手機input keyboard</label>
+          </div>
+        </div>
+    </div>  
+  <div class="row">
+    <div class="col-md-6 lotte-col">
+      <div class="d-flex align-items-center">
+        <h5 class="flex-grow-1">範例1</h5> <span class="badge badge-pill lotte-badge">限制日期範圍</span> <span class="badge badge-pill lotte-badge">中文化</span>
+      </div>
+      <div class="lotte-date">
+        <input type="text" name="NAME_TWO_DATE1" class="form-control lotte-input-date" value="" >
+      </div>
+      <pre>
+<xmp>
+<input type="text" name="NAME_TWO_DATE1" class="form-control lotte-input-date" value="">
+...  
+</xmp>
+<b>[js]</b> 
+$('input[name="NAME_TWO_DATE1"]').daterangepicker({
+<span>  minDate: moment().startOf('day'),  //限制開始日期-今日
+  maxDate: '2019-10-20', //限制結束日期
+  startDate: moment(), //起始日
+  endDate: moment().add(1, 'days'), //終止日
+  buttonClasses: "lotte-btn",
+  applyButtonClasses: "lotte-btn-apply",
+  cancelButtonClasses: "lotte-btn-cancel", </span>
+  opens: 'left',      
+  locale: {
+    applyLabel: "套用",
+    cancelLabel: "取消",
+    format: 'YYYY/MM/DD',
+    daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+    monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
+  }
+}, function(start, end, label) {
+    console.log("已選擇 開始日期: " + start.format('YYYY/MM/DD') + '結束日期: ' + end.format('YYYY/MM/DD'));
+});
+      </pre>
+    </div>
+    <div class="col-md-6 lotte-col">
+      <div class="d-flex align-items-center">
+        <h5 class="flex-grow-1">SPAN範例</h5> <span class="badge badge-pill lotte-badge">手機適用?</span> <span class="badge badge-pill lotte-badge">選時間</span>
+      </div>
+      <div id="ID_DATE_RANGE"  class="report_range_style lotte-date-picker-box">
+          <div class="flex-grow-1">
+            <i class="fa fa-calendar lotte-icon"></i> <span class="">xxxxx</span>
+          </div>
+          <i class="fa fa-caret-down lotte-icon"></i>
+      </div>
+      <pre>
+<xmp>
+<div id="ID_DATE_RANGE"  class="report_range_style lotte-date-picker-box">
+    <div class="flex-grow-1">
+      <i class="fa fa-calendar lotte-icon"></i> <span class="">xxxxx</span>
+    </div>
+    <i class="fa fa-caret-down lotte-icon"></i>
+</div>
+</xmp>
+<b>[js]</b> 
+var start = moment().startOf('hour');
+var end = moment().startOf('hour').add(32, 'hour');
+var myformat = 'MM/DD hh:mm A';
+function drawDateRangePicker(rangePickerId){
+    function cb(start, end) {
+        //寫自動將日期寫入輸入欄位
+<span>        $(rangePickerId+" span").html(start.format(myformat) + ' - ' + end.format(myformat));</span>
+    } 
+    $(rangePickerId).daterangepicker({
+        startDate: start,
+        endDate: end,
+<span>        timePicker: true, </span>
+        buttonClasses: "lotte-btn",
+        applyButtonClasses: "lotte-btn-apply",
+        cancelButtonClasses: "lotte-btn-cancel",                   
+        opens: 'center',
+        locale: {
+            format: myformat
+        }
+    }, cb); 
+    cb(start, end);     
+}
+drawDateRangePicker("#ID_DATE_RANGE");
+      </pre>
+    </div>
+  </div>
+
+</div>
+
+  <!-- bootstrap 4 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- date picker -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script>
+      $( document ).ready(function() {
+          //強制關閉手機input keyboard
+          $('input.lotte-input-date').on('show.daterangepicker', function(ev, picker) {
+            var myinput = $(this);
+            if($('.ID_HIDE_MOBILE_KEYBOARD').prop('checked')){
+              myinput.blur();
+              myinput.attr('disabled', 'disabled');
+            }
+          });
+          $('input.lotte-input-date').on('hide.daterangepicker', function(ev, picker) {
+            var myinput = $(this);
+            myinput.removeAttr('disabled');
+          });
+
+          //範例1
+          $('input[name="NAME_TWO_DATE1"]').daterangepicker({
+            minDate: moment().startOf('day'),  //限制開始日期-今日
+            maxDate: '2019-10-20', //限制結束日期
+            startDate: moment(), //起始日
+            endDate: moment().add(1, 'days'), //終止日
+            buttonClasses: "lotte-btn",
+            applyButtonClasses: "lotte-btn-apply",
+            cancelButtonClasses: "lotte-btn-cancel",      
+            opens: 'left',      
+            locale: {
+              applyLabel: "套用",
+              cancelLabel: "取消",
+              format: 'YYYY/MM/DD',
+              daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+              monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
+            }
+          }, function(start, end, label) {
+              console.log("已選擇 開始日期: " + start.format('YYYY/MM/DD') + '結束日期: ' + end.format('YYYY/MM/DD'));
+          });
+          //SPAN範例 
+          var start = moment().startOf('hour');
+          var end = moment().startOf('hour').add(32, 'hour');
+          var myformat = 'MM/DD hh:mm A';
+          function drawDateRangePicker(rangePickerId){
+              function cb(start, end) {
+                  //寫自動將日期寫入輸入欄位
+                  $(rangePickerId+" span").html(start.format(myformat) + ' - ' + end.format(myformat));
+              } 
+              $(rangePickerId).daterangepicker({
+                  startDate: start,
+                  endDate: end,
+                  timePicker: true, 
+                  buttonClasses: "lotte-btn",
+                  applyButtonClasses: "lotte-btn-apply",
+                  cancelButtonClasses: "lotte-btn-cancel",                   
+                  opens: 'center',
+                  locale: {
+                      format: myformat
+                  }
+              }, cb); 
+              cb(start, end);     
+          }
+          drawDateRangePicker("#ID_DATE_RANGE");
+         
+          
+      }); //document ready
+  </script>
+</body>
+</html>

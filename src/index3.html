@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hans-TW">
+<head>
+  <title>Date Range Picker 範例</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- jquery  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- bootstrap 4 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- date picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <!-- Font Awesome v4.7.0 -->
+  <link rel="stylesheet"  href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+  <!-- lotte style -->
+  <link rel="stylesheet" href="main.css" />
+
+</head>
+<body>
+
+<div class="jumbotron lotte-jumbotron text-center">
+  <h1>Date Range Picker 範例</h1>
+  <ul class="nav nav-lotte justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link " href="index.html">選取單一日期</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="index2.html">選取起迄日期</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="index3.html">手機原生</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="http://www.daterangepicker.com/" target="_blank" style="border: none;" title="原站連結"><i class="fa fa-link"></i></a>
+    </li>    
+  </ul>  
+</div>
+
+<div class="container lotte-container" >
+  <div class="row">
+    <div class="col-md-12 lotte-col">
+        <div class="d-flex align-items-center">
+            <h5 class="flex-grow-1">範例 手機版切為原生date</h5> 
+        </div>
+        <div class="lotte-date">
+            <input type="text" name="NAME_ONE_DATEX" class="form-control lotte-input-date lotte-pc-only" value="">
+            <input type="date" name="NAME_ONE_DATEX_MOBI" class="form-control lotte-input-date lotte-mobile-only" value="2019-08-24" min="2019-08-24" max="2019-09-12">
+        </div>
+        <pre>
+          <xmp>
+<div class="lotte-date">
+    <input type="text" name="NAME_ONE_DATEX" class="form-control lotte-input-date lotte-pc-only" value="">
+    <input type="date" name="NAME_ONE_DATEX_MOBI" class="form-control lotte-input-date lotte-mobile-only" value="2019-08-24" min="2019-08-24" max="2019-09-12">
+</div>
+          </xmp>
+<b>[js]</b> 
+$('input[name="NAME_ONE_DATEX"]').daterangepicker({
+  singleDatePicker: true,
+  locale: {
+    format: 'YYYY-MM-DD'
+  }
+}, function (start) {
+    console.log("已選擇日期: " + start.format('YYYY-MM-DD'));
+});
+<span>
+$('input[name="NAME_ONE_DATEX_MOBI"]').change(function() {
+    var start = $('input[name="NAME_ONE_DATEX_MOBI"]').val();
+    console.log("已選擇日期: " + start)
+});</span>
+        </pre>
+    </div>
+  </div>
+  
+  
+</div>
+
+  <!-- bootstrap 4 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- date picker -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <script>
+      $( document ).ready(function() {
+          
+
+          //範例 Mobile切換成原生
+          $('input[name="NAME_ONE_DATEX"]').daterangepicker({
+            singleDatePicker: true,
+            locale: {
+              format: 'YYYY-MM-DD'
+            }
+          }, function (start) {
+              console.log("已選擇日期: " + start.format('YYYY-MM-DD'));
+          });
+          
+          $('input[name="NAME_ONE_DATEX_MOBI"]').change(function() {
+              var start = $('input[name="NAME_ONE_DATEX_MOBI"]').val();
+              console.log("已選擇日期: " + start)
+          });
+          
+      }); //document ready
+  </script>
+</body>
+</html>

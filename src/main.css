@@ -1,0 +1,228 @@
+    
+    /* font */
+    @import url('https://fonts.googleapis.com/css?family=PT+Sans|Karla|Noto+Sans+TC&display=swap');
+    
+    body{
+      font-family: 'PT Sans', 'Karla', 'Noto Sans TC',  serif;
+      font-weight: 400;
+    }
+    /* 頁面樣式 */
+    .lotte-col{
+      margin-bottom: 1.5rem; 
+    }
+    .lotte-badge{
+      margin: 0 .1rem;
+      letter-spacing: 1px;
+      font-weight: 400;
+      color: #45beb2;
+      border: 1px solid #45beb2;
+      background: transparent;
+    }
+    .lotte-date-picker-box{
+      background: #fff; 
+      cursor: pointer; 
+      padding: .5rem .75rem; 
+      border: 1px solid #ccc; 
+      width: 100%; 
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+    }
+    .lotte-date-picker-box > *{
+      vertical-align: middle;
+    }
+    .lotte-input-date[readonly], .lotte-input-date:disabled{
+      background: inherit;
+      color: #666;
+    }
+    .lotte-icon{
+      display: inline-block;
+      margin-right: .25rem;
+    }
+
+    .nav-lotte .nav-link:hover, .nav-lotte .nav-link.active{
+      color: #45beb2;
+      border-bottom: 1px solid #45beb2;
+    }
+    .nav-lotte .nav-link{
+      margin: .25rem .5rem;
+      padding: .25rem;
+      color: #aaa;
+    }
+    xmp{
+      color: black;
+      margin: 0;
+    }
+    pre {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      border-left: 3px solid #f36d33;
+      color: #666;
+      page-break-inside: avoid;
+      font-family: monospace;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-top: .75rem;
+      margin-bottom: 0rem;
+      max-width: 100%;
+      overflow: auto;
+      padding: 1rem 1.5rem;
+      width: 100%;
+      display: block;
+      word-wrap: break-word;
+    }
+    pre span{
+      color: #f36d33;
+    }
+    pre b{
+      color: black;
+    }
+    .custom-control-input:checked~.custom-control-label::before{
+      border-color: #45beb2;
+      background-color:  #45beb2;
+    }
+    .custom-control-input+label{
+      color: #aaa;
+    }
+    .custom-control-input:checked +label{
+      color: #000;
+    }
+    .lotte-mobile-only{
+      display: none;
+    }
+    .lotte-pc-only{
+      display: block;
+    }
+@media only screen and (max-width: 768px) {
+  .lotte-mobile-only{
+    display: block;
+  }
+  .lotte-pc-only{
+    display: none;
+  }
+  .lotte-container{
+    padding-bottom: 50rem;
+  }
+  pre {
+    display: none;
+  }
+  .lotte-mobile-only pre{
+    display: block;
+  }
+  .nav-lotte .nav-link{
+    margin: .25rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  h1{
+    font-size: 1.75rem;
+  }
+}
+
+
+    /* date range picker 輸入框樣式 */
+    .lotte-date{
+      position: relative;
+      width: 100%;
+      height: 2.5rem;
+      
+    }
+    .lotte-date:before, .lotte-date:after{
+       position: absolute; 
+       z-index: 1;
+       width: 1rem;
+       height: 1rem;
+       top: 0.45rem;
+       font-family: FontAwesome;
+       display: inline-block;
+       cursor: pointer;
+    }
+    .lotte-date:before{
+      left: .75rem;
+      content: "\f073"; /* .fa-calendar */
+    }
+    .lotte-date:after{
+      right: .5rem;
+      content: "\f0d7"; /* .fa-caret-down */
+    }
+    .lotte-date input, .lotte-date input:focus{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      padding-left: 2rem;
+      background: transparent;
+    }
+    
+    /* 修改date range picker 日曆內部樣式 */
+    .lotte-btn-apply{
+      background: #45beb2;
+      color: #fff;
+    }
+    .lotte-btn-apply:hover{
+      color: teal;
+    }
+    .lotte-btn-cancel{
+      background: #eee;
+    }
+    .lotte-btn-cancel:hover{
+      background: #ddd;
+    }
+    .lotte-btn{
+      border: 0;
+      margin: .25rem;
+      font-size: 1rem;
+      padding: .5rem 1rem;
+      border-radius: .25rem;
+    }
+    .daterangepicker{
+      font-family: inherit;
+    }
+    .daterangepicker .calendar-table th, .daterangepicker .calendar-table td{
+      font-size: 1rem;
+      width: 2.5rem;
+      height: 2rem;
+    }
+    .daterangepicker td.active, .daterangepicker td.active:hover{
+      background-color: #45beb2;
+    }
+    .daterangepicker th.month{
+      color: teal;
+      font-weight: bold;
+    }
+    .daterangepicker .calendar-table .next span, .daterangepicker .calendar-table .prev span{
+      border-color: teal;
+    }
+    
+    /* 修改date range picker 日曆內部樣式: 年、月下拉選單樣式 */
+    .daterangepicker select.monthselect, .daterangepicker select.yearselect,
+    .daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.ampmselect{
+      font-size: 1rem;
+      vertical-align: middle;
+      padding: .1rem;
+      height: 2rem;
+      border: 1px solid  #ccc;
+    }
+    .daterangepicker select.monthselect, .daterangepicker select.yearselect{
+      width: 50%;
+    }
+    .daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.secondselect, .daterangepicker select.ampmselect{
+        width: 25%;
+    }
+    /* 修改date range picker 日曆內部樣式: 取消/完成 btn在手機尺寸的排版*/
+    @media only screen and (max-width: 565px) {
+      .daterangepicker .drp-selected{
+        display: block;
+      }
+    }
+
+
+    /* 原生 html5 input date 樣式 */
+
+    ::-webkit-clear-button,
+    ::-webkit-inner-spin-button {
+      display:none;
+    }
+    input[type="date"]:hover::-webkit-calendar-picker-indicator,
+    ::-webkit-calendar-picker-indicator 
+     { opacity:0.05; }
