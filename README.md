@@ -132,7 +132,9 @@ $('input.lotte-input-date').on('hide.daterangepicker', function(ev, picker) {
 
 ### 2.切換為`原生`日期選取模式
 
-![printscreen](images/mobile3.png)
+| iOS        | Android           | 
+| ------------- |:-------------:| 
+| ![printscreen](images/mobile3.png) | ![printscreen](images/mobile4.jpg)  | 
 
 ```html
 <div class="lotte-date">
@@ -158,3 +160,7 @@ $('input[name="NAME_ONE_DATEX_MOBI"]').change(function() {
 });
 ```
 *  [範例](https://lottevic.github.io/date-range-picker-ex/src/index3.html)  
+
+
+##  其他類似功能 js
+* 統一為popup月曆 - [pickdate.js](https://amsul.ca/pickadate.js/)
