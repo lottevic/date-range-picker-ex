@@ -43,30 +43,15 @@
             <h5 class="flex-grow-1">範例 手機版切為原生date</h5> 
         </div>
         <div class="lotte-date">
-            <input type="text" name="NAME_ONE_DATEX" class="form-control lotte-input-date lotte-pc-only" value="">
-            <input type="date" name="NAME_ONE_DATEX_MOBI" class="form-control lotte-input-date lotte-mobile-only" value="2019-08-24" min="2019-08-24" max="2019-09-12">
+            <input type="text" name="NAME_ONE_DATEX_PC" class="form-control lotte-input-date" value="">
+            <input type="date" name="NAME_ONE_DATEX_MOBI" class="form-control lotte-input-date" value="2019-08-24" min="2019-08-24" max="2019-09-12">
         </div>
         <pre>
           <xmp>
-<div class="lotte-date">
-    <input type="text" name="NAME_ONE_DATEX" class="form-control lotte-input-date lotte-pc-only" value="">
-    <input type="date" name="NAME_ONE_DATEX_MOBI" class="form-control lotte-input-date lotte-mobile-only" value="2019-08-24" min="2019-08-24" max="2019-09-12">
-</div>
+
           </xmp>
 <b>[js]</b> 
-$('input[name="NAME_ONE_DATEX"]').daterangepicker({
-  singleDatePicker: true,
-  locale: {
-    format: 'YYYY-MM-DD'
-  }
-}, function (start) {
-    console.log("已選擇日期: " + start.format('YYYY-MM-DD'));
-});
-<span>
-$('input[name="NAME_ONE_DATEX_MOBI"]').change(function() {
-    var start = $('input[name="NAME_ONE_DATEX_MOBI"]').val();
-    console.log("已選擇日期: " + start)
-});</span>
+
         </pre>
     </div>
   </div>
@@ -81,23 +66,49 @@ $('input[name="NAME_ONE_DATEX_MOBI"]').change(function() {
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <script>
+    function AmIMobileDevice() {
+        var mobileDevice = false;
+        var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android device
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios device
+        // var isiOSChrome = u.indexOf("CriOS") > -1; //判断是否iOS上的 Chrome 
+        // var isiOSLine = u.indexOf("Line") > -1; //判断是否iOS上的 Line browser
+        // alert(u + "\n");  //for test mode
+        // var isiOS = true; //for test mode
+        if (isAndroid || isiOS) {
+          alert('isAndroid: ' + isAndroid + ' isiOS: '+ isiOS);
+          mobileDevice = true;
+        } 
+        return mobileDevice;
+      }
       $( document ).ready(function() {
-          
+
+          var isMobile = AmIMobileDevice(); //判別是否為mobile device
+          console.log("isMobile? "+ isMobile);
 
           //範例 Mobile切換成原生
-          $('input[name="NAME_ONE_DATEX"]').daterangepicker({
-            singleDatePicker: true,
-            locale: {
-              format: 'YYYY-MM-DD'
-            }
-          }, function (start) {
-              console.log("已選擇日期: " + start.format('YYYY-MM-DD'));
-          });
-          
-          $('input[name="NAME_ONE_DATEX_MOBI"]').change(function() {
+          if(isMobile){
+            $('input[name="NAME_ONE_DATEX_MOBI"]').show();
+            $('input[name="NAME_ONE_DATEX_PC"]').hide();
+             //Mobile 採用 原生
+             $('input[name="NAME_ONE_DATEX_MOBI"]').change(function () {
               var start = $('input[name="NAME_ONE_DATEX_MOBI"]').val();
               console.log("已選擇日期: " + start)
-          });
+            });
+          }else{
+            $('input[name="NAME_ONE_DATEX_MOBI"]').hide();
+            $('input[name="NAME_ONE_DATEX_PC"]').show();
+            //PC 採用 dateranhepicker
+            $('input[name="NAME_ONE_DATEX_PC"]').daterangepicker({
+              singleDatePicker: true,
+              locale: {
+                format: 'YYYY-MM-DD'
+              }
+            }, function (start) {
+              console.log("已選擇日期: " + start.format('YYYY-MM-DD'));
+            });
+          }
+         
           
       }); //document ready
   </script>

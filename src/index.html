@@ -168,6 +168,31 @@ $('input[name="NAME_ONE_DATE4"]').daterangepicker({
   <div class="row">
     <div class="col-md-6 lotte-col">
       <div class="d-flex align-items-center">
+        <h5 class="flex-grow-1">範例5</h5> <span class="badge badge-pill lotte-badge">input填入預設文字</span>
+      </div>
+      <div class="lotte-date">
+        <input type="text" name="NAME_ONE_DATE5" class="form-control lotte-input-date" value="請選取日期">
+      </div>
+      <pre>
+<xmp>
+<input type="text" name="NAME_ONE_DATE5" value="請選取日期" class="form-control lotte-input-date" >
+...
+</xmp>
+$('input[name="NAME_ONE_DATE5"]').daterangepicker({
+  singleDatePicker: true,
+  <span>autoUpdateInput: false, //需關掉自動填日期
+  startDate: moment(), //需設定初始日期 </span>
+  locale: {
+    format: 'YYYY-MM-DD'
+  }
+}, function (start) {
+  <span>$('input[name="NAME_ONE_DATE5"]').val(start.format('YYYY-MM-DD')); //需手動將日期結果填入input </span>
+  console.log("已選擇日期: " + start.format('YYYY-MM-DD'));
+});
+      </pre>
+    </div>
+    <div class="col-md-6 lotte-col">
+      <div class="d-flex align-items-center">
         <h5 class="flex-grow-1">SPAN範例</h5> <span class="badge badge-pill lotte-badge">手機適用</span>
       </div>
       <div id="ID_DATE"  class="lotte-date-picker-box">
@@ -197,29 +222,31 @@ $('#ID_DATE').daterangepicker({
 });
       </pre>
     </div>
+    
+  </div>
+  <div class="row">
     <div class="col-md-6 lotte-col lotte-mobile-only">
-        <div class="d-flex align-items-center">
-            <h5 class="flex-grow-1">強制關閉手機input keyboard的寫法</h5> <span class="badge badge-pill lotte-badge">手機適用</span>
-        </div>
-        <pre>
-//強制關閉手機input keyboard
-$('input.lotte-input-date').on(<span>'show.daterangepicker'</span>, function(ev, picker) { 
-  <span>//當打開小月曆時，</span>
-  var myinput = $(this);
-  if($('.ID_HIDE_MOBILE_KEYBOARD').prop('checked')){
-    <span>myinput.blur(); //將手機keyboard關閉
-    myinput.attr('disabled', 'disabled'); //將input設置為disable狀態，(鎖住) 避免再次點擊到而打開手機keyboard</span>
-  }
-});
-$('input.lotte-input-date').on(<span>'hide.daterangepicker'</span>, function(ev, picker) { 
-  <span>//當關閉小月曆時，</span>
-  var myinput = $(this);
-  <span>myinput.removeAttr('disabled'); //取消input的disable狀態 (解鎖)</span>
-});
-        </pre>
+      <div class="d-flex align-items-center">
+        <h5 class="flex-grow-1">強制關閉手機input keyboard的寫法</h5> <span class="badge badge-pill lotte-badge">手機適用</span>
+      </div>
+      <pre>
+    //強制關閉手機input keyboard
+    $('input.lotte-input-date').on(<span>'show.daterangepicker'</span>, function(ev, picker) { 
+      <span>//當打開小月曆時，</span>
+      var myinput = $(this);
+      if($('.ID_HIDE_MOBILE_KEYBOARD').prop('checked')){
+        <span>myinput.blur(); //將手機keyboard關閉
+        myinput.attr('disabled', 'disabled'); //將input設置為disable狀態，(鎖住) 避免再次點擊到而打開手機keyboard</span>
+      }
+    });
+    $('input.lotte-input-date').on(<span>'hide.daterangepicker'</span>, function(ev, picker) { 
+      <span>//當關閉小月曆時，</span>
+      var myinput = $(this);
+      <span>myinput.removeAttr('disabled'); //取消input的disable狀態 (解鎖)</span>
+    });
+            </pre>
     </div>
   </div>
-
 </div>
 
   <!-- bootstrap 4 -->
@@ -300,6 +327,18 @@ $('input.lotte-input-date').on(<span>'hide.daterangepicker'</span>, function(ev,
             }
           }, function (start) {
               console.log("已選擇日期: " + start.format('YYYY/MM/DD H:mm'));
+          });
+          //範例5
+          $('input[name="NAME_ONE_DATE5"]').daterangepicker({
+            singleDatePicker: true,
+            autoUpdateInput: false, //需關掉自動填日期 
+            startDate: moment(), //需設定初始日期
+            locale: {
+              format: 'YYYY-MM-DD'
+            }
+          }, function (start) {
+            $('input[name="NAME_ONE_DATE5"]').val(start.format('YYYY-MM-DD')); //需手動將日期結果填入input
+            console.log("已選擇日期: " + start.format('YYYY-MM-DD'));
           });
           //SPAN範例
           var start = moment();  

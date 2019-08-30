@@ -18,6 +18,10 @@
   <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 ```
+* 說明: 經實測，使用舊版Jquery也可以
+```html
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+```
 * 說明: date range picker 需引用 [moment.js](https://momentjs.com/) ，是一個時間相關函數的js。
 
 ##  Single Date
